@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: portfolio-website-ingress
+spec:
+  ingressClassName: {{ .Values.ingress.className }}
+  rules:
+  - host: "{{ .Values.ingress.host }}"
+    http:
+      paths:
+      - pathType: Prefix
+        path: {{ .Values.ingress.path }}
+        backend:
+          service:
+            name: portfolio-website-service
+            port:
+              number: {{ .Values.service.port }}
+

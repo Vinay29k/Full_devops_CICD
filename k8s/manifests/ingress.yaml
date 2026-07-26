@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: portfolio-website-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: "portfolio.test"
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: portfolio-website-service
+            port:
+              number: 80
